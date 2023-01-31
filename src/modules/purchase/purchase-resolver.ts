@@ -34,22 +34,22 @@ export class PurchaseResolver {
         return await this.purchaseService.getStore(purchase.getStoreId());
     }
 
-    @FieldResolver(type => String)
+    @FieldResolver(() => String)
     productPrice(@Root() purchase : Purchase){
         return formatMoney(purchase.getProductPrice())
     }
 
-    @FieldResolver(type => String)
+    @FieldResolver(() => String)
     storeAmount(@Root() purchase : Purchase){
         return formatMoney(purchase.getStoreAmout())
     }
 
-    @FieldResolver(type => String)
+    @FieldResolver(() => String)
     gatewayValue(@Root() purchase : Purchase){
         return formatMoney(purchase.getGatewayAmount())
     }
 
-    @FieldResolver(type => String)
+    @FieldResolver(() => String)
     marketplaceValue(@Root() purchase : Purchase){
         return formatMoney(purchase.getMarketplaceAmount())
     }

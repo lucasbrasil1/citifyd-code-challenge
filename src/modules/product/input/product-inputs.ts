@@ -7,7 +7,7 @@ export class ProductInput {
     @Length(1, 30)
     name: string;
 
-    @Field(type => Int)
+    @Field(Int)
     @Min(0)
     price: number;
 
@@ -24,7 +24,7 @@ export class ProductUpdate {
     @Length(1, 30)
     name?: string;
 
-    @Field(type => Int, { nullable : true })
+    @Field(() => Int, { nullable : true })
     @Min(0)
     price?: number;
 }

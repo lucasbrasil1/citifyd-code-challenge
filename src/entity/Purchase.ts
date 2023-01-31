@@ -7,11 +7,11 @@ import { Store } from "./Store";
 @Entity()
 export class Purchase extends BaseEntity {
 
-    @Field(type => ID)
+    @Field(() => ID)
     @PrimaryGeneratedColumn()
     id: number
 
-    @Field(type => ID)
+    @Field(() => ID)
     @Column()
     private productId: number
 
@@ -22,7 +22,7 @@ export class Purchase extends BaseEntity {
     @Column()
     private productPrice: number
 
-    @Field(type => Store)
+    @Field(() => Store)
     @ManyToOne(() => Store)
     store: Store
     @RelationId((purchase: Purchase) => purchase.store)

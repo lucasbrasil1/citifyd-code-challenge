@@ -5,7 +5,7 @@ import { Store } from "../../entity/Store";
 import { ProductInput, ProductUpdate } from "./input/product-inputs";
 import { ProductService } from "./service/product-service";
 
-@Resolver(type => Product)
+@Resolver(Product)
 export class ProductResolver {
 
     constructor(

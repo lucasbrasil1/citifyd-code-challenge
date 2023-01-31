@@ -15,17 +15,17 @@ export class ProductService {
     }
 
     async getOne(id: number): Promise<Product> {
-        return await this.productRepository.findOneBy({ id : Equal(Number(id)) });
+        return await this.productRepository.findOneBy({ id : Equal(id) });
     }
 
     async getAllByStore(storeId: number): Promise<Product[]> {
-        const store: Store = await this.storeRepository.findOneBy({ id: Equal(Number(storeId)) })
+        const store: Store = await this.storeRepository.findOneBy({ id: Equal(storeId) })
         if (!store) { throw new Error("Store Id Not Found!") }
-        return this.productRepository.find({relations : ["store"], where: {store : Equal(Number(store.id))}})
+        return this.productRepository.find({relations : ["store"], where: {store : Equal(store.id)}})
     }
 
     async create({ name, price, storeId }: ProductInput): Promise<Product> {
-        const store: Store = await this.storeRepository.findOneBy({ id: Equal(Number(storeId)) })
+        const store: Store = await this.storeRepository.findOneBy({ id: Equal(storeId) })
         if (!store) { throw new Error("Store Id Not Found!") }
         return await Product.create({ name, price, store }).save();
     }
