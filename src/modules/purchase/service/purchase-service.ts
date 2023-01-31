@@ -21,24 +21,24 @@ export class PurchaseService {
     ) { }
 
     async getAll(): Promise<Purchase[]> {
-        return this.purchaseRepository.find();
+        return await this.purchaseRepository.find();
     }
 
-    async get(id: Number): Promise<Purchase> {
-        return this.purchaseRepository.findOneBy({ id: Equal(Number(id)) });
+    async get(id: number): Promise<Purchase> {
+        return await this.purchaseRepository.findOneBy({ id: Equal(id) });
     }
 
-    async purchase(id: Number): Promise<Purchase> {
+    async purchase(id: number): Promise<Purchase> {
         const product = await this.getProduct(id);
         if (!product) { throw new Error("Product Id Not Found!") }
         return await this.createPurchase(product);
     }
 
-    async getProduct(id: Number): Promise<Product> {
-        return this.productRepository.findOne({ where: { id: Equal(Number(id)) }, cache: 1000 })
+    async getProduct(id: number): Promise<Product> {
+        return await this.productRepository.findOne({ where: { id: Equal(id) }, cache: 1000 })
     }
-    async getStore(id: Number): Promise<Store> {
-        return this.storeRepository.findOne({ where: { id: Equal(Number(id)) }, cache: 1000 })
+    async getStore(id: number): Promise<Store> {
+        return await this.storeRepository.findOne({ where: { id: Equal(id) }, cache: 1000 })
     }
 
     private async createPurchase(product: Product): Promise<Purchase> {

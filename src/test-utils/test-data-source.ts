@@ -5,7 +5,7 @@ import { Store } from "../entity/Store"
 
 export const TestDataSource = new DataSource({
     type: "sqlite",
-    database: "testdb.sqlite",
+    database: "mydb.sqlite",
     logging: false,
     entities: [
         Store, Product, Purchase

@@ -24,7 +24,7 @@ export class PurchaseResolver {
 
     @Mutation(() => Purchase)
     async purchase(
-        @Arg('id') id: Number
+        @Arg('id') id: number
     ): Promise<Purchase> {
         return await this.purchaseService.purchase(id);
     }

@@ -45,11 +45,11 @@ export class ProductResolver {
     async updateProduct(
         @Arg('data') data : ProductUpdate
     ) : Promise<Product> {
-        return this.productService.update(data);
+        return await this.productService.update(data);
     }
 
     @Mutation(() => String)
-    async deleteProduct(
+    deleteProduct(
         @Arg('id') id: number
     ) : Promise<String> {
         return this.productService.delete(id);
@@ -57,6 +57,6 @@ export class ProductResolver {
 
     @FieldResolver()
     async store(@Root() product: Product): Promise<Store> {
-        return this.productService.getStore(product.getStoreId());
+        return await this.productService.getStore(product.getStoreId());
     }
 }

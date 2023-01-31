@@ -28,6 +28,6 @@ const main = async () => {
 
 }
 
-AppDataSource.initialize().then(async () => {
+AppDataSource.initialize().then(() => {
     main();
 }).catch(error => console.log(error))

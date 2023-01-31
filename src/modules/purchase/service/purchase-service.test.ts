@@ -10,7 +10,7 @@ import { money } from "../../../utils/money";
 describe('create purchase test', () => {
 
     beforeAll(async () => {
-        await TestDataSource.initialize().then(async () => {
+        await TestDataSource.initialize().then(() => {
 
         }).catch(err => console.log(err));
     })
@@ -96,7 +96,7 @@ describe('create purchase test', () => {
         await createFakeStore(null, 17).then(async store => {
             await createFakeProduct(store, null, 202020).then(async product => {
                 await purchaseService.purchase(product.id).then(async purchase => {
-                    await purchaseService.get(purchase.id).then(async purchase => {
+                    await purchaseService.get(purchase.id).then(purchase => {
                         expect(purchase.getProductName()).toBe(product.getName());
                         expect(purchase.getStoreAmout()).toBe(167677)
                         expect(purchase.getGatewayAmount()).toBe(2020)
@@ -114,7 +114,7 @@ describe('create purchase test', () => {
         await createFakeStore(null).then(async store => {
             await createFakeProduct(store, "ProductTest202020", 202020).then(async product => {
                 await purchaseService.purchase(product.id).then(async purchase => {
-                    await purchaseService.getProduct(purchase.getProductId()).then(async product => {
+                    await purchaseService.getProduct(purchase.getProductId()).then(product => {
                         expect(product.getName()).toBe("ProductTest202020")
                         expect(product.getPrice()).toBe(202020)
                         expect(product.getStoreId()).toBe(store.id)
@@ -130,7 +130,7 @@ describe('create purchase test', () => {
         await createFakeStore("LAStoreTest", 20).then(async store => {
             await createFakeProduct(store, null, 202020).then(async product => {
                 await purchaseService.purchase(product.id).then(async purchase => {
-                    await purchaseService.getStore(purchase.getStoreId()).then(async store => {
+                    await purchaseService.getStore(purchase.getStoreId()).then(store => {
                         expect(store.name).toBe("LAStoreTest")
                         expect(store.totalFee).toBe(20)
                     })
