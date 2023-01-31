@@ -18,7 +18,7 @@ export class Store extends BaseEntity {
     @Column({ default: 10 })
     totalFee: number
 
-    @Field(type => [Product])
+    @Field(() => [Product])
     @OneToMany(() => Product, product => product.store)
     products: Promise<Product[]>;
 }

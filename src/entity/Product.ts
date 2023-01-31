@@ -18,7 +18,7 @@ export class Product extends BaseEntity {
 
     setName(name: string) { this.name = name; }
 
-    @Field(type => Int)
+    @Field(Int)
     @Column()
     price: number
 
@@ -26,7 +26,7 @@ export class Product extends BaseEntity {
 
     setPrice(price: number) { this.price = price }
 
-    @Field(type => Store)
+    @Field(() => Store)
     @ManyToOne(() => Store)
     store: Store
     @RelationId((product: Product) => product.store)
