@@ -10,8 +10,7 @@ import { PurchaseResolver } from './modules/purchase/purchase-resolver';
 
 const main = async () => {
     const schema = await buildSchema({
-        resolvers: [StoreResolver, ProductResolver, PurchaseResolver],
-        emitSchemaFile: true
+        resolvers: [StoreResolver, ProductResolver, PurchaseResolver]
     });
 
     const apolloServer = new ApolloServer({
@@ -24,6 +23,10 @@ const main = async () => {
 
     app.listen(4000, () => {
         console.log("Server started on http://localhost:4000/graphql");
+    })
+
+    app.get('/', (req, res) => {
+        res.send("Server started on <a href='http://localhost:4000/graphql'>Apollo Express</a>")
     })
 
 }
