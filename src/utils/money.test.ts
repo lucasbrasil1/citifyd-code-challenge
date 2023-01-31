@@ -4,7 +4,7 @@ import { formatMoney, money } from "./money";
 
 describe('money utils tests', () => {
     it('should format the integer type to formatted string correctly', () => {
-        const integer: number = 5200;
+        const integer = 5200;
         const result = formatMoney(integer);
 
         expect(result).toBe('$52.00');

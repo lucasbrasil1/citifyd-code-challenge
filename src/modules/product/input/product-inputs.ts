@@ -7,24 +7,24 @@ export class ProductInput {
     @Length(1, 30)
     name: string;
 
-    @Field(Int)
+    @Field(_Type => Int)
     @Min(0)
     price: number;
 
-    @Field(Type => Int)
+    @Field(_Type => Int)
     storeId: number;
 }
 
 @InputType()
 export class ProductUpdate {
-    @Field(() => ID)
+    @Field(_Type => ID)
     id : number;
 
     @Field({ nullable : true })
     @Length(1, 30)
     name?: string;
 
-    @Field(() => Int, { nullable : true })
+    @Field(_Type => Int, { nullable : true })
     @Min(0)
     price?: number;
 }

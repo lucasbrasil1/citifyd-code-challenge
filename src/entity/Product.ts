@@ -18,7 +18,7 @@ export class Product extends BaseEntity {
 
     setName(name: string) { this.name = name; }
 
-    @Field(Int)
+    @Field(_Type => Int)
     @Column()
     price: number
 

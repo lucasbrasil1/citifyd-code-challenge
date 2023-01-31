@@ -51,7 +51,7 @@ export class ProductResolver {
     @Mutation(() => String)
     deleteProduct(
         @Arg('id') id: number
-    ) : Promise<String> {
+    ) : Promise<string> {
         return this.productService.delete(id);
     }
 
