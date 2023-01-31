@@ -21,12 +21,12 @@ const main = async () => {
 
     apolloServer.applyMiddleware({ app });
 
-    app.listen(4000, () => {
-        console.log("Server started on http://localhost:4000/graphql");
+    app.listen(3000, () => {
+        console.log("Server started on http://localhost:3000/graphql");
     })
 
     app.get('/', (req, res) => {
-        res.send("Server started on <a href='http://localhost:4000/graphql'>Apollo Express</a>")
+        res.send("Server started on <a href='http://localhost:3000/graphql'>Apollo Express</a>")
     })
 
 }
