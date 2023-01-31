@@ -1,0 +1,14 @@
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+coverage/
+.eslintrc.json
+challenge-description.md
+jest.config.js
+mydb.sqlite
+package-lock.json
+schema.gql
+yarn.lock
