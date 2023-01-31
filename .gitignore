@@ -9,6 +9,4 @@ coverage/
 challenge-description.md
 jest.config.js
 mydb.sqlite
-package-lock.json
 schema.gql
-yarn.lock
