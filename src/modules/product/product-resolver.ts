@@ -22,14 +22,14 @@ export class ProductResolver {
 
     @Query(() => [Product])
     async allProductsFor(
-        @Arg('storeId') storeId: Number
+        @Arg('storeId') storeId: number
     ) : Promise<Product[]> {
         return await this.productService.getAllByStore(storeId);
     }
 
     @Query(() => Product)
     async getProduct(
-        @Arg('id') id : Number
+        @Arg('id') id : number
     )  : Promise<Product>{
         return await this.productService.getOne(id);
     }
@@ -50,7 +50,7 @@ export class ProductResolver {
 
     @Mutation(() => String)
     async deleteProduct(
-        @Arg('id') id: Number
+        @Arg('id') id: number
     ) : Promise<String> {
         return this.productService.delete(id);
     }

@@ -11,11 +11,11 @@ export class ProductService {
     ) { }
 
     async getAll(): Promise<Product[]> {
-        return this.productRepository.find();
+        return await this.productRepository.find();
     }
 
     async getOne(id: number): Promise<Product> {
-        return this.productRepository.findOneBy({ id : Equal(Number(id)) });
+        return await this.productRepository.findOneBy({ id : Equal(Number(id)) });
     }
 
     async getAllByStore(storeId: number): Promise<Product[]> {
@@ -27,8 +27,7 @@ export class ProductService {
     async create({ name, price, storeId }: ProductInput): Promise<Product> {
         const store: Store = await this.storeRepository.findOneBy({ id: Equal(Number(storeId)) })
         if (!store) { throw new Error("Store Id Not Found!") }
-        const product = await Product.create({ name, price, store }).save();
-        return product;
+        return await Product.create({ name, price, store }).save();
     }
 
     async update({ id, name, price }: ProductUpdate): Promise<Product> {
@@ -37,11 +36,10 @@ export class ProductService {
         if (!product) { throw new Error("Product Id Not Found!") }
         if (name) { product.setName(name); }
         if (price) { product.setPrice(price); }
-        product.save();
-        return product;
+        return product.save();
     }
 
-    async delete(id: number): Promise<String> {
+    async delete(id: number): Promise<string> {
         const product = await Product.findOneBy(({ id: Equal(id) }));
         if (!product) { throw new Error("Product Id Not Found!") }
         await product.remove();
