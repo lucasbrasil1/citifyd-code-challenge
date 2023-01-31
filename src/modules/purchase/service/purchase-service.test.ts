@@ -6,7 +6,6 @@ import { IAmounts, PurchaseService } from "./purchase-service";
 import { faker } from "@faker-js/faker"
 import { money } from "../../../utils/money";
 
-
 describe('create purchase test', () => {
 
     beforeAll(async () => {
@@ -87,7 +86,7 @@ describe('create purchase test', () => {
                 });
             })
         })
-        
+
     })
 
     it('should get one purchase', async () => {
@@ -140,14 +139,14 @@ describe('create purchase test', () => {
     })
 })
 
-function createFakeStore(name?: string, fee?: number | string) {
+function createFakeStore(name?: string, fee?: number | string): Promise<Store> {
     return Store.create({
         name: name ? name : faker.company.name(),
         totalFee: fee ? Number(fee) : 10
     }).save();
 }
 
-function createFakeProduct(store: Store, name?: string, price?: number) {
+function createFakeProduct(store: Store, name?: string, price?: number): Promise<Product> {
     return Product.create({
         name: name ? name : faker.commerce.product(),
         price: price ? price : Number(faker.random.numeric(5)),
@@ -156,7 +155,7 @@ function createFakeProduct(store: Store, name?: string, price?: number) {
 }
 
 function clearDatabase() {
-    TestDataSource.getRepository(Purchase).clear()
-    TestDataSource.getRepository(Product).clear()
-    TestDataSource.getRepository(Store).clear()
+    TestDataSource.getRepository(Purchase).clear();
+    TestDataSource.getRepository(Product).clear();
+    TestDataSource.getRepository(Store).clear();
 }
