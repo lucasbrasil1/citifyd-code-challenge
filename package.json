@@ -39,6 +39,7 @@
    },
    "scripts": {
       "start": "tsnd --respawn src/index.ts",
+      "build": "tsc",
       "typeorm": "typeorm-ts-node-commonjs",
       "test": "jest",
       "lint": "eslint"
