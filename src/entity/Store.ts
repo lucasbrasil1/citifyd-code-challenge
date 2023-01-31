@@ -8,15 +8,15 @@ export class Store extends BaseEntity {
 
     @Field(() => ID)
     @PrimaryGeneratedColumn()
-    id: Number
+    id: number
 
     @Field()
     @Column({ unique: true })
-    name: String
+    name: string
 
     @Field({ defaultValue: 10 })
     @Column({ default: 10 })
-    totalFee: Number
+    totalFee: number
 
     @Field(type => [Product])
     @OneToMany(() => Product, product => product.store)

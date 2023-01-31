@@ -9,37 +9,37 @@ export class Purchase extends BaseEntity {
 
     @Field(type => ID)
     @PrimaryGeneratedColumn()
-    id: Number
+    id: number
 
     @Field(type => ID)
     @Column()
-    private productId: Number
+    private productId: number
 
     @Field()
     @Column()
-    private productName: String
+    private productName: string
 
     @Column()
-    private productPrice: Number
+    private productPrice: number
 
     @Field(type => Store)
     @ManyToOne(() => Store)
     store: Store
     @RelationId((purchase: Purchase) => purchase.store)
-    private storeId: Number
+    private storeId: number
 
     @Column()
-    private storeAmout: Number;
+    private storeAmout: number;
 
     @Column()
-    private gatewayAmount: Number;
+    private gatewayAmount: number;
 
     @Column()
-    private marketplaceAmount: Number;
+    private marketplaceAmount: number;
 
     @Column()
     @Field()
-    private feeAtTheTime : Number;
+    private feeAtTheTime : number;
 
     getProductId() { return this.productId }
     getProductName() { return this.productName }
@@ -48,13 +48,13 @@ export class Purchase extends BaseEntity {
     getStoreAmout() { return this.storeAmout }
     getGatewayAmount() { return this.gatewayAmount }
     getMarketplaceAmount() { return this.marketplaceAmount }
-    setProductId(productId: Number) { this.productId = productId }
-    setProductName(productName: String) { this.productName = productName }
-    setProductPrice(productPrice: Number) { this.productPrice = productPrice }
-    setStoreId(storeId: Number) { this.storeId = storeId }
-    setStoreAmout(storeAmout: Number) { this.storeAmout = storeAmout }
-    setGatewayAmount(gatewayAmount: Number) { this.gatewayAmount = gatewayAmount }
-    setMarketplaceAmount(marketplaceAmount: Number) { this.marketplaceAmount = marketplaceAmount }
-    getFeeAtTheTime(): Number { return this.feeAtTheTime }
-    setFeeAtTheTime(fee : Number) { this.feeAtTheTime = fee }
+    setProductId(productId: number) { this.productId = productId }
+    setProductName(productName: string) { this.productName = productName }
+    setProductPrice(productPrice: number) { this.productPrice = productPrice }
+    setStoreId(storeId: number) { this.storeId = storeId }
+    setStoreAmout(storeAmout: number) { this.storeAmout = storeAmout }
+    setGatewayAmount(gatewayAmount: number) { this.gatewayAmount = gatewayAmount }
+    setMarketplaceAmount(marketplaceAmount: number) { this.marketplaceAmount = marketplaceAmount }
+    getFeeAtTheTime(): number { return this.feeAtTheTime }
+    setFeeAtTheTime(fee : number) { this.feeAtTheTime = fee }
 }

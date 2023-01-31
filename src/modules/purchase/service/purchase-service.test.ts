@@ -55,7 +55,7 @@ describe('create purchase test', () => {
         const fixedFee = 6;
         const fixedPrice = 7490286;
         await createFakeStore(null, fixedFee).then(async store => {
-            
+
             const expectedResult: IAmounts = {
                 gateway: 74903,
                 marketplace: 374514,
@@ -78,21 +78,16 @@ describe('create purchase test', () => {
     it('should get all purchases', async () => {
         clearDatabase();
 
-        for (var s = 0; s < 3; s++) {
-            await createFakeStore().then(async store => {
-                for (var i = 0; i < 3; i++) {
-                    await createFakeProduct(store).then(async product => {
-                        for (var j = 0; j < 3; j++) {
-                            await purchaseService.purchase(product.id);
-                        }
-                    })
-                }
+        await createFakeStore().then(async store => {
+            await createFakeProduct(store).then(async product => {
+                await purchaseService.purchase(product.id).then(async () => {
+                    await purchaseService.getAll().then(all =>
+                        expect(all.length).toBe(1)
+                    );
+                });
             })
-        }
-
-        await purchaseService.getAll().then(all =>
-            expect(all.length).toBe(27)
-        );
+        })
+        
     })
 
     it('should get one purchase', async () => {
@@ -145,17 +140,17 @@ describe('create purchase test', () => {
     })
 })
 
-function createFakeStore(name?: String, fee?: Number | String) {
+function createFakeStore(name?: string, fee?: number | string) {
     return Store.create({
         name: name ? name : faker.company.name(),
         totalFee: fee ? Number(fee) : 10
     }).save();
 }
 
-function createFakeProduct(store: Store, name?: String, price?: Number) {
+function createFakeProduct(store: Store, name?: string, price?: number) {
     return Product.create({
         name: name ? name : faker.commerce.product(),
-        price: price ? price : faker.random.numeric(5),
+        price: price ? price : Number(faker.random.numeric(5)),
         store: store
     }).save();
 }

@@ -14,18 +14,18 @@ export class ProductService {
         return this.productRepository.find();
     }
 
-    async getOne(id: Number): Promise<Product> {
-        return this.productRepository.findOneBy({ id : Equal(id) });
+    async getOne(id: number): Promise<Product> {
+        return this.productRepository.findOneBy({ id : Equal(Number(id)) });
     }
 
-    async getAllByStore(storeId: Number): Promise<Product[]> {
-        const store: Store = await this.storeRepository.findOneBy({ id: Equal(storeId) })
+    async getAllByStore(storeId: number): Promise<Product[]> {
+        const store: Store = await this.storeRepository.findOneBy({ id: Equal(Number(storeId)) })
         if (!store) { throw new Error("Store Id Not Found!") }
-        return this.productRepository.find({relations : ["store"], where: {store : Equal(store.id)}})
+        return this.productRepository.find({relations : ["store"], where: {store : Equal(Number(store.id))}})
     }
 
     async create({ name, price, storeId }: ProductInput): Promise<Product> {
-        const store: Store = await this.storeRepository.findOneBy({ id: Equal(storeId) })
+        const store: Store = await this.storeRepository.findOneBy({ id: Equal(Number(storeId)) })
         if (!store) { throw new Error("Store Id Not Found!") }
         const product = await Product.create({ name, price, store }).save();
         return product;
@@ -41,14 +41,14 @@ export class ProductService {
         return product;
     }
 
-    async delete(id: Number): Promise<String> {
+    async delete(id: number): Promise<String> {
         const product = await Product.findOneBy(({ id: Equal(id) }));
         if (!product) { throw new Error("Product Id Not Found!") }
         await product.remove();
         return `Product ${product.getName()} was succesfully deleted`;
     }
 
-    async getStore(storeId: Number): Promise<Store> {
+    async getStore(storeId: number): Promise<Store> {
         return await this.storeRepository.findOne({ where: { id: Equal(storeId) }, cache: 1000 });
     }
 

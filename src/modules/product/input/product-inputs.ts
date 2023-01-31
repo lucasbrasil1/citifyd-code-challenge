@@ -5,26 +5,26 @@ import { Field, ID, InputType, Int } from "type-graphql";
 export class ProductInput {
     @Field()
     @Length(1, 30)
-    name: String;
+    name: string;
 
     @Field(type => Int)
     @Min(0)
-    price: Number;
+    price: number;
 
     @Field(Type => Int)
-    storeId: Number;
+    storeId: number;
 }
 
 @InputType()
 export class ProductUpdate {
     @Field(() => ID)
-    id : Number;
+    id : number;
 
     @Field({ nullable : true })
     @Length(1, 30)
-    name?: String;
+    name?: string;
 
     @Field(type => Int, { nullable : true })
     @Min(0)
-    price?: Number;
+    price?: number;
 }

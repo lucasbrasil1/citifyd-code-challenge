@@ -5,25 +5,25 @@ import { Field, InputType } from "type-graphql";
 export class StoreInput {
     @Field()
     @Length(1, 30)
-    name: String
+    name: string
 
     @Field({nullable : true})
     @Min(1)
     @Max(20)
-    totalFee: Number
+    totalFee: number
 }
 
 @InputType()
 export class StoreUpdate extends StoreInput {
     @Field({nullable : false})
-    id: Number;
+    id: number;
 
     @Field({nullable : true})
     @Length(1, 30)
-    name: String
+    name: string
 
     @Field({nullable : true})
     @Min(1)
     @Max(20)
-    totalFee: Number
+    totalFee: number
 }

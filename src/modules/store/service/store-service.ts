@@ -13,7 +13,7 @@ export class StoreService {
     }
 
     async get(id: Number): Promise<Store> {
-        return await this.storeRepository.findOneBy({ id: Equal(id) })
+        return await this.storeRepository.findOneBy({ id: Equal(Number(id)) })
     }
 
     async create({ name, totalFee }: StoreInput): Promise<Store> {
@@ -28,7 +28,7 @@ export class StoreService {
     async update({ id, name, totalFee }: StoreUpdate): Promise<Store> {
         if (!name && !totalFee) { throw new Error("No values have been changed!") }
 
-        const storeToUpdate = await this.storeRepository.findOneBy({ id: Equal(id) })
+        const storeToUpdate = await this.storeRepository.findOneBy({ id: Equal(Number(id)) })
         if (storeToUpdate === null) { throw new Error("Store Id Not Found!") }
  
         if (name) storeToUpdate.name = name;

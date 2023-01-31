@@ -1,4 +1,3 @@
-import { Dinero } from "dinero.js";
 import { Equal, Repository } from "typeorm";
 import { Product } from "../../../entity/Product";
 import { Purchase } from "../../../entity/Purchase";
@@ -26,7 +25,7 @@ export class PurchaseService {
     }
 
     async get(id: Number): Promise<Purchase> {
-        return this.purchaseRepository.findOneBy({ id: Equal(id) });
+        return this.purchaseRepository.findOneBy({ id: Equal(Number(id)) });
     }
 
     async purchase(id: Number): Promise<Purchase> {
@@ -36,10 +35,10 @@ export class PurchaseService {
     }
 
     async getProduct(id: Number): Promise<Product> {
-        return this.productRepository.findOne({ where: { id: Equal(id) }, cache: 1000 })
+        return this.productRepository.findOne({ where: { id: Equal(Number(id)) }, cache: 1000 })
     }
     async getStore(id: Number): Promise<Store> {
-        return this.storeRepository.findOne({ where: { id: Equal(id) }, cache: 1000 })
+        return this.storeRepository.findOne({ where: { id: Equal(Number(id)) }, cache: 1000 })
     }
 
     private async createPurchase(product: Product): Promise<Purchase> {
@@ -59,7 +58,7 @@ export class PurchaseService {
         return await purchase.save();
     }
 
-    private calculateAmounts(price : Number, fee : Number) : IAmounts {
+    private calculateAmounts(price : number, fee : number) : IAmounts {
         const gatewayMoney = money(price).percentage(GATEWAY_FEE);
         const marketplaceMoney = money(price).percentage(Number(fee) - GATEWAY_FEE);
         const storeMoney = money(price).subtract(gatewayMoney.add(marketplaceMoney));
