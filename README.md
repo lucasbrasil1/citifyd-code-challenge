@@ -6,11 +6,11 @@ Running locally:
 
 1. Run `npm i` command
 2. Run `npm start` command
-3. Server will start on http://localhost:4000/graphql
+3. Server will start on http://localhost:3000/graphql
 
 Docker image:
 
-docker run -p 3000:4000 -d lucas/dockernode 
+docker run -p 3000:3000 -d lucas/dockernode 
 
 QUERIES
 
