@@ -8,9 +8,6 @@ Running locally:
 2. Run `npm start` command
 3. Server will start on http://localhost:3000/graphql
 
-Docker image:
-
-docker run -p 3000:3000 -d lucas/dockernode 
 
 QUERIES
 
